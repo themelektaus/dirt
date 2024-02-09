@@ -32,8 +32,9 @@ namespace Dirt
                         return false;
 
                 if (targetType != string.Empty)
-                    if (targetType != modification.prefab.target.GetType().FullName)
-                        return false;
+                    if (modification.prefab.target)
+                        if (targetType != modification.prefab.target.GetType().FullName)
+                            return false;
 
                 if (useTargetPath)
                     if (modification.prefab.targetPath != targetPath)

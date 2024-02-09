@@ -482,7 +482,6 @@ namespace Dirt
                             {
                                 var m = x as Modification;
                                 settings.exclusions.RemoveAll(x => x.Match(m));
-                                refreshCountdown++;
                             }, x);
                         }
                         else
@@ -498,7 +497,6 @@ namespace Dirt
                                     targetPath = m.prefab.targetPath,
                                     propertyPath = m.propertyPath
                                 });
-                                refreshCountdown++;
                             }, x);
                         }
                         menu.AddSeparator("");
