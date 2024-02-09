@@ -8,7 +8,6 @@
             <ui:Label text="►" style="margin-left: 5px; margin-right: 5px; color: rgba(255, 255, 255, 0.2);" />
             <ui:Label name="InstanceValue" style="text-overflow: ellipsis; overflow: hidden; -unity-font-style: bold; margin-top: 0; margin-bottom: 0; flex-grow: 1; flex-shrink: 1;" />
             <uie:ObjectField name="InstanceObjectValue" style="margin-top: 0; margin-bottom: 0; margin-right: 0; margin-left: 0; flex-shrink: 1; -unity-font-style: bold;" />
-            <ui:Button text="R" name="RevertButton" style="margin-top: 0; margin-bottom: 0; margin-left: 0; padding-right: 3px; padding-left: 3px; padding-top: 0; padding-bottom: 0; margin-right: 0;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
