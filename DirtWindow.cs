@@ -77,6 +77,8 @@ namespace Dirt
                 AddDefaultItemsTo(menu);
                 menu.ShowAsContext();
             });
+
+            refreshCountdown = 2;
         }
 
         public class Modification
