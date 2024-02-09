@@ -52,7 +52,7 @@ namespace Dirt
 
         public ExclusionState GetExclusionState(DirtWindow.Modification modification)
         {
-            var matches = exclusions.Where(x => x.Match(modification)).ToList();
+            var matches = (exclusions ??= new()).Where(x => x.Match(modification)).ToList();
 
             if (matches.Count > 0)
             {
