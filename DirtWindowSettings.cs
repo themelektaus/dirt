@@ -44,6 +44,7 @@ namespace Dirt
             public bool useTargetPath;
             public string targetPath;
             public string propertyPath;
+            public bool propertyPathStartsWith;
 
             public bool Match(Modification modification)
             {
@@ -74,8 +75,16 @@ namespace Dirt
 
                 if (propertyPath != string.Empty)
                 {
-                    if (modification.propertyPath != propertyPath)
+                    if (propertyPathStartsWith)
+                    {
+                        if (!modification.propertyPath.StartsWith(propertyPath))
+                            return false;
+
+                    }
+                    else if (modification.propertyPath != propertyPath)
+                    {
                         return false;
+                    }
                 }
 
                 return true;
