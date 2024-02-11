@@ -14,6 +14,7 @@ namespace Dirt
         public string targetPath { get; private set; }
         public List<int> targetIndexedPath { get; private set; }
         public string targetPropertyValue { get; private set; }
+        public bool hasTargetPropertyObjectValue { get; private set; }
         public Object targetPropertyObjectValue { get; private set; }
         public bool isNothing { get; private set; }
         public bool hasValue { get; private set; }
@@ -101,7 +102,7 @@ namespace Dirt
             if (p is null)
             {
                 isNothing = true;
-                v = "<color=#999999>(nothing)</color>";
+                v = "<color=#777777>(nothing)</color>";
             }
             else
             {
@@ -143,10 +144,9 @@ namespace Dirt
                     default:
                         if (Regex.IsMatch(p.type, @"^PPtr\<.+\>$"))
                         {
+                            hasTargetPropertyObjectValue = true;
                             targetPropertyObjectValue = p.objectReferenceValue;
-                            v = targetPropertyObjectValue
-                                ? $"<color=#33ffff>{targetPropertyObjectValue.name}</color>"
-                                : "<color=#009999>(null)</color>";
+                            v = string.Empty;
                             break;
                         }
 

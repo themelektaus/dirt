@@ -243,14 +243,14 @@ namespace Dirt
                 var label = row.Q<Label>($"{name}Value");
                 var objectField = row.Q<ObjectField>($"{name}ObjectValue");
 
-                if (modification.prefab.targetPropertyObjectValue)
+                if (reference.hasTargetPropertyObjectValue)
                 {
                     label.RemoveFromHierarchy();
-                    objectField.value = modification.prefab.targetPropertyObjectValue;
+                    objectField.value = reference.targetPropertyObjectValue;
                 }
                 else
                 {
-                    label.text = modification.prefab.targetPropertyValue;
+                    label.text = reference.targetPropertyValue;
                     objectField.RemoveFromHierarchy();
                 }
             }
