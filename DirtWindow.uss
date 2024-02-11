@@ -1,7 +1,63 @@
+EditorPanelRootElement > VisualElement > TemplateContainer {
+    background-color: #333;
+}
+
+#Content {
+    background-color: #383838;
+    border-bottom-width: 1px;
+    border-bottom-color: #292929;
+}
+
 #Search #unity-text-input {
-    padding: 5px;
-    padding-top: 2px;
-    padding-right: 2px;
-    padding-bottom: 2px;
-    padding-left: 2px;
+    padding: 3px;
+}
+
+#Content #unity-content-container {
+    padding-bottom: 10px;
+}
+
+Button.link {
+    align-self: flex-start;
+    margin-top: 2px;
+    margin-right: 0px;
+    margin-left: 273px;
+    margin-bottom: 2px;
+    padding: 0px;
+    background-color: transparent;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-bottom-color: transparent;
+    border-left-width: 0;
+    color: rgb(105, 205, 255);
+}
+
+Button.link:hover {
+    color: rgb(155, 205, 255);
+    border-bottom-color: rgb(155, 205, 255);
+}
+
+.row {
+    color: rgb(205, 205, 205);
+}
+
+.row:hover {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+.row.unchanged-but-dirty {
+    color: rgb(255, 255, 255);
+    background-color: rgba(155, 255, 155, .1);
+}
+
+.row.unchanged-but-dirty:hover {
+    background-color: rgba(155, 255, 155, .2);
+}
+
+.row.excluded {
+    color: rgba(255, 155, 155, .5);
+}
+
+.row.excluded:hover {
+    background-color: rgba(255, 205, 205, .05);
 }

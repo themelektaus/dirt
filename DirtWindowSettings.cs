@@ -1,74 +1,113 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
+using UnityEditor;
 using UnityEngine;
 
 namespace Dirt
 {
-    public class DirtWindowSettings : UnityEngine.ScriptableObject
+    public class DirtWindowSettings : ScriptableObject
     {
-        public bool showExclusions;
-        public bool showOnlyUnchangedDirtyValues;
+        public static DirtWindowSettings instance { get; private set; }
+        public static void Load([CallerFilePath] string path = null)
+        {
+            path = Path.GetRelativePath(
+                Environment.CurrentDirectory,
+                new FileInfo(path).Directory.FullName
+            );
+            path = Path.Combine(path, $"{nameof(DirtWindowSettings)}.asset");
+
+            instance = AssetDatabase.LoadAssetAtPath<DirtWindowSettings>(path);
+
+            if (instance)
+                return;
+
+            instance = CreateInstance<DirtWindowSettings>();
+            AssetDatabase.CreateAsset(instance, path);
+            AssetDatabase.Refresh();
+        }
+
+        public Vector2Int modificationLimit = new(3, 10);
+
+        public VisibilityMask visibility
+            = VisibilityMask.ChangedDirtyValues
+            | VisibilityMask.UnchangedDirtyValues;
 
         [Serializable]
         public class Exclusion
         {
-            public bool ignore;
-            public bool force;
             public GameObject owner;
             public string targetType;
             public bool useTargetPath;
             public string targetPath;
             public string propertyPath;
 
-            public bool Match(DirtWindow.Modification modification)
+            public bool Match(Modification modification)
             {
-                if (ignore)
-                    return false;
-
                 if (owner)
-                    if (owner != modification.prefab.owner)
+                {
+                    var prefabOwner = modification.prefab.GetOwner();
+                    if (prefabOwner && prefabOwner != owner)
                         return false;
+                }
 
                 if (targetType != string.Empty)
-                    if (modification.prefab.target)
-                        if (targetType != modification.prefab.target.GetType().FullName)
+                {
+                    var prefabTarget = modification.prefab.GetTarget();
+                    if (prefabTarget)
+                    {
+                        var prefabType = prefabTarget.GetType().FullName;
+                        if (prefabType != targetType)
                             return false;
+                    }
+                }
 
                 if (useTargetPath)
-                    if (modification.prefab.targetPath != targetPath)
+                {
+                    var prefabTargetPath = modification.prefab.targetPath;
+                    if (prefabTargetPath != targetPath)
                         return false;
+                }
 
                 if (propertyPath != string.Empty)
-                    if (propertyPath != modification.propertyPath)
+                {
+                    if (modification.propertyPath != propertyPath)
                         return false;
+                }
 
                 return true;
             }
         }
-        public List<Exclusion> exclusions;
+        [SerializeField] List<Exclusion> exclusions = new();
 
-        public enum ExclusionState { Included, Excluded, ExcludedButVisible }
-
-        public ExclusionState GetExclusionState(DirtWindow.Modification modification)
+        public void ToggleExclusion(Modification modification)
         {
-            var matches = (exclusions ??= new()).Where(x => x.Match(modification)).ToList();
-
-            if (matches.Count > 0)
+            if (modification.excluded)
             {
-                if (showExclusions)
-                {
-                    if (matches.All(x => x.force))
-                        return ExclusionState.Excluded;
-
-                    return ExclusionState.ExcludedButVisible;
-                }
-
-                return ExclusionState.Excluded;
+                modification.excluded = false;
+                exclusions.RemoveAll(x => x.Match(modification));
+                return;
             }
 
-            return ExclusionState.Included;
+            var target = modification.prefab.GetTarget();
+
+            modification.excluded = true;
+            exclusions.Add(new()
+            {
+                owner = modification.prefab.GetOwner(),
+                targetType = target ? target.GetType().FullName : string.Empty,
+                useTargetPath = true,
+                targetPath = modification.prefab.targetPath,
+                propertyPath = modification.propertyPath
+            });
+        }
+
+        public bool IsExcluded(Modification modification)
+        {
+            return exclusions.Any(x => x.Match(modification));
         }
     }
 }

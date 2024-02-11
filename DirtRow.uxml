@@ -1,13 +1,13 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <ui:VisualElement style="flex-direction: row; align-items: center; margin-left: 5px; margin-right: 5px; margin-top: 1px; margin-bottom: 1px;">
         <uie:ObjectField name="InstanceTarget" style="flex-basis: 260px; margin-top: 0; margin-bottom: 0;" />
-        <ui:Label name="PropertyPath" style="text-overflow: ellipsis; overflow: hidden; flex-basis: 40%; margin-top: 0; margin-bottom: 0;" />
-        <ui:VisualElement style="flex-grow: 1; flex-direction: row; overflow: hidden; align-items: center; flex-shrink: 1;">
-            <ui:Label name="PrefabValue" style="text-overflow: ellipsis; overflow: hidden; flex-basis: 50%; margin-top: 0; margin-bottom: 0; -unity-text-align: upper-right;" />
-            <uie:ObjectField name="PrefabObjectValue" style="margin-top: 0; margin-bottom: 0; flex-shrink: 1; margin-right: 0; margin-left: 0;" />
-            <ui:Label text="►" style="margin-left: 5px; margin-right: 5px; color: rgba(255, 255, 255, 0.2);" />
-            <ui:Label name="InstanceValue" style="text-overflow: ellipsis; overflow: hidden; -unity-font-style: bold; margin-top: 0; margin-bottom: 0; flex-grow: 1; flex-shrink: 1;" />
-            <uie:ObjectField name="InstanceObjectValue" style="margin-top: 0; margin-bottom: 0; margin-right: 0; margin-left: 0; flex-shrink: 1; -unity-font-style: bold;" />
+        <ui:Label name="PropertyPath" style="text-overflow: ellipsis; overflow: hidden; margin-top: 0; margin-bottom: 0; flex-grow: 1; flex-shrink: 1; flex-basis: 50%;" />
+        <ui:VisualElement style="flex-direction: row; overflow: hidden; align-items: center; flex-grow: 1; flex-basis: 400px;">
+            <ui:Label name="PrefabValue" text="(nothing)" style="text-overflow: ellipsis; overflow: hidden; margin-top: 0; margin-bottom: 0; -unity-text-align: upper-right; flex-basis: 180px; flex-shrink: 1; flex-grow: 1;" />
+            <uie:ObjectField name="PrefabObjectValue" style="margin-top: 0; margin-bottom: 0; margin-right: 0; margin-left: 0; flex-basis: 180px; flex-shrink: 1; flex-grow: 1;" />
+            <ui:Label text="►" style="color: rgba(255, 255, 255, 0.2); flex-basis: 20px; -unity-text-align: upper-center;" />
+            <ui:Label name="InstanceValue" text="(nothing)" style="text-overflow: ellipsis; overflow: hidden; -unity-font-style: bold; margin-top: 0; margin-bottom: 0; flex-basis: 180px; flex-shrink: 1; flex-grow: 1;" />
+            <uie:ObjectField name="InstanceObjectValue" style="margin-top: 0; margin-bottom: 0; margin-right: 0; margin-left: 0; -unity-font-style: bold; flex-basis: 180px; flex-shrink: 1; flex-grow: 1;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

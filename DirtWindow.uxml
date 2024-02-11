@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
-    <Style src="project://database/Assets/_/Editor/Tools/DirtWindow.uss?fileID=7433441132597879392&amp;guid=0ed142f8c193d8544995bb04fd255893&amp;type=3#DirtWindow" />
+    <Style src="project://database/Assets/Dirt/DirtWindow.uss?fileID=7433441132597879392&amp;guid=0ed142f8c193d8544995bb04fd255893&amp;type=3#DirtWindow" />
     <ui:TextField placeholder-text="Search" name="Search" style="margin-right: 2px; margin-left: 2px;" />
-    <ui:ScrollView name="Content" style="flex-grow: 1;" />
+    <ui:ScrollView name="Content" style="flex-grow: 1; height: 385px;" />
 </ui:UXML>
