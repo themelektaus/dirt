@@ -328,7 +328,7 @@ namespace Dirt
                 }, modification);
 
                 menu.AddItem(
-                    content: new("Excluded"),
+                    content: new(modification.excluded ? "Excluded" : "Exclude"),
                     on: modification.excluded,
                     func: x =>
                     {
