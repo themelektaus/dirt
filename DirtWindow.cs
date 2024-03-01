@@ -116,7 +116,7 @@ namespace Dirt
                     .FindComponentsOfType<Transform>()
                     .Where(x => x.hideFlags != HideFlags.HideAndDontSave)
                     .Select(x => x.gameObject)
-                : FindObjectsByType<GameObject>(FindObjectsSortMode.InstanceID)
+                : FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID)
                     .AsEnumerable()
             ).ToList();
         }
