@@ -46,7 +46,7 @@ namespace Dirt
         public Object GetTarget()
         {
             if (!target)
-                Debug.LogWarning($"Reference has no owner");
+                Debug.LogWarning($"{(owner ? $"{owner.name}: " : "")}Reference has no target");
 
             return target;
         }
