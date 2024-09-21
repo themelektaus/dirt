@@ -327,17 +327,27 @@ namespace Dirt
                     row.SetEnabled(false);
                 }, modification);
 
-                menu.AddItem(
-                    content: new(modification.excluded ? "Excluded" : "Exclude"),
-                    on: modification.excluded,
-                    func: x =>
-                    {
-                        var m = x as Modification;
-                        settings.ToggleExclusion(m);
-                        RefreshRowAppeareance(row, m);
-                    },
-                    userData: modification
-                );
+                if (modification.excluded)
+                {
+                    menu.AddDisabledItem(
+                        content: new("Excluded"),
+                        on: true
+                    );
+                }
+                else
+                {
+                    menu.AddItem(
+                        content: new("Exclude"),
+                        on: false,
+                        func: x =>
+                        {
+                            var m = x as Modification;
+                            settings.ToggleExclusion(m);
+                            RefreshRowAppeareance(row, m);
+                        },
+                        userData: modification
+                    );
+                }
             }
 
             if (row is not null || modifications.Count > 0)
